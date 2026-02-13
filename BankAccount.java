@@ -1,24 +1,26 @@
 public class BankAccount{
-    // 1.Private means 'Lesson9' cannot touch this directly
     private double balance;
+    private String owner;
 
-    // 2. The 'Setter' to initialize the money
-    public void setintialBalance(double amount){
-        this.balance = amount;
+    // THE CONSTRUCTOR: Runs automatically when you use 'new'
+    public BankAccount(String name, double initialBalance){
+        this.owner = name;
+        if (initialBalance >= 0){
+            this.balance =  initialBalance;
+        }
     }
 
-    // 3. The 'Getter' so Lesson9 can see the money 
+    // Safely see the money
     public double getBalance(){
         return balance;
     }
 
-    // 4. The secure withdrawal gate
+    // Professional withdrawal logic
     public void withdraw(double amount){
-        if(amount <= balance){
+        if (amount > 0 && amount <= balance){
             balance -= amount;
-            System.out.println("Success! Withdrew: KES"+ amount);
         } else{
-            System.out.println("Insufficient funds!");
+            System.out.println("Transaction failed for"+ owner);
         }
     }
 }
